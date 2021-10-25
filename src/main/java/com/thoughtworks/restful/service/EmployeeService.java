@@ -2,6 +2,8 @@ package com.thoughtworks.restful.service;
 
 import com.thoughtworks.restful.entity.Employee;
 import com.thoughtworks.restful.repository.EmployeeRepository;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,5 +22,9 @@ public class EmployeeService {
 
     public Employee findById(Integer id) {
         return this.employeeRepository.findById(id);
+    }
+
+    public PageImpl<Employee> findPagingEmployees(Pageable pageable) {
+        return this.employeeRepository.findPagingEmployees(pageable);
     }
 }

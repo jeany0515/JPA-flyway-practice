@@ -34,7 +34,7 @@ public class EmployeeRepository {
                 .skip((long) pageable.getPageNumber() * pageable.getPageSize())
                 .limit(pageable.getPageSize())
                 .collect(Collectors.toList());
-        return new PageImpl<>(employeeList);
+        return new PageImpl<>(employeeList, pageable, this.employees.size());
     }
 
     public List<Employee> findEmployeesByGender(String gender) {

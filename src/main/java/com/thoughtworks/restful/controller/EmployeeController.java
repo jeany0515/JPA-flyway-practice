@@ -35,7 +35,7 @@ public class EmployeeController {
 
     @GetMapping(params = {"page", "pageSize"})
     public PageImpl<Employee> findPagingEmployees(@PageableDefault Pageable pageable) {
-        return this.employeeRepository.findPagingEmployees(pageable);
+        return this.employeeService.findPagingEmployees(pageable);
     }
 
     @GetMapping(params = "gender")

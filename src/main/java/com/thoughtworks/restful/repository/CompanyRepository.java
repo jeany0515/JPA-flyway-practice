@@ -35,7 +35,7 @@ public class CompanyRepository {
                 .skip((long) (pageable.getPageNumber() + 1) * pageable.getPageSize())
                 .limit(pageable.getPageSize())
                 .collect(Collectors.toList());
-        return new PageImpl<Company>(companyList);
+        return new PageImpl<>(companyList, pageable, this.companies.size());
     }
 
 
