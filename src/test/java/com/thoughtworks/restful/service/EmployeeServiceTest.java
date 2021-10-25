@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
@@ -36,5 +35,18 @@ class EmployeeServiceTest {
 
         //then
         assertEquals(employees, actual);
+    }
+
+    @Test
+    void should_return_employee_1_when_find_by_id_given_one_employee_with_id1() {
+        //given
+        Employee employee = new Employee("Ang", 18, "male", 999999);
+        when(employeeRepository.findById(1)).thenReturn(employee);
+
+        //when
+        Employee actual = employeeService.findById(1);
+
+        //then
+        assertEquals(employee, actual);
     }
 }

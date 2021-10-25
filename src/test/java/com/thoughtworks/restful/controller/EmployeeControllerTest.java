@@ -57,4 +57,24 @@ class EmployeeControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(expected));
     }
+
+
+    @Test
+    void should_return_employee1_when_find_all_given_employee1() throws Exception {
+        //given
+        Employee employee = new Employee("Ang",18,"male",999999);
+        employeeRepository.createEmployee(employee);
+        String expected =
+                "    {\n" +
+                        "        \"id\": 1,\n" +
+                        "        \"name\": \"Ang\",\n" +
+                        "        \"age\": 18,\n" +
+                        "        \"gender\": \"male\",\n" +
+                        "        \"salary\": 999999\n" +
+                        "    }";
+        //when
+        mockMvc.perform(get("/employees/1"))
+                .andExpect(status().isOk())
+                .andExpect(content().json(expected));
+    }
 }

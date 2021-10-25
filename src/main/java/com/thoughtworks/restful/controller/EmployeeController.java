@@ -30,7 +30,7 @@ public class EmployeeController {
 
     @GetMapping("/{id}")
     public Employee findById(@PathVariable Integer id) {
-        return this.employeeRepository.findById(id);
+        return this.employeeService.findById(id);
     }
 
     @GetMapping(params = {"page", "pageSize"})
