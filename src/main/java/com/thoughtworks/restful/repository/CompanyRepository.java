@@ -43,7 +43,7 @@ public class CompanyRepository {
         int newId = this.companies.stream()
                 .mapToInt(Company::getId)
                 .max()
-                .orElse(-1) + 1;
+                .orElse(0) + 1;
 
         company.setId(newId);
         this.companies.add(company);

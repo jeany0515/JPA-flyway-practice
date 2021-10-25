@@ -2,6 +2,7 @@ package com.thoughtworks.restful.controller;
 
 import com.thoughtworks.restful.entity.Employee;
 import com.thoughtworks.restful.repository.EmployeeRepository;
+import com.thoughtworks.restful.service.EmployeeService;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -15,14 +16,16 @@ import java.util.Objects;
 @RequestMapping("/employees")
 public class EmployeeController {
     private final EmployeeRepository employeeRepository;
+    private final EmployeeService employeeService;
 
-    public EmployeeController(EmployeeRepository employeeRepository) {
+    public EmployeeController(EmployeeRepository employeeRepository, EmployeeService employeeService) {
         this.employeeRepository = employeeRepository;
+        this.employeeService = employeeService;
     }
 
     @GetMapping
     public List<Employee> findAll() {
-        return this.employeeRepository.findAll();
+        return this.employeeService.findAll();
     }
 
     @GetMapping("/{id}")

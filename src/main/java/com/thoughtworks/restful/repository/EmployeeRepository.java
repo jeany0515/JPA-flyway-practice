@@ -48,7 +48,7 @@ public class EmployeeRepository {
         int newId = this.employees.stream()
                 .mapToInt(Employee::getId)
                 .max()
-                .orElse(-1) + 1;
+                .orElse(0) + 1;
 
         employee.setId(newId);
         this.employees.add(employee);
@@ -78,5 +78,9 @@ public class EmployeeRepository {
         return this.employees.stream()
                 .filter(item -> id.equals(item.getId()))
                 .collect(Collectors.toList());
+    }
+
+    public void deleteAll() {
+        this.employees.clear();
     }
 }
