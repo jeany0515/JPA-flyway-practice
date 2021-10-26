@@ -7,6 +7,10 @@ public class Company {
     private Integer id;
     private String name;
 
+    public Company(String name) {
+        this.name = name;
+    }
+
     public Integer getId() {
         return id;
     }

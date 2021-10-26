@@ -29,7 +29,7 @@ class EmployeeServiceTest {
     @Test
     void should_return_1_employee_when_find_all_given_1_employee() {
         //given
-        Employee employee = new Employee("Ang", 18, "male", 999999);
+        Employee employee = new Employee("Ang", 18, "male", 999999, 1);
         List<Employee> employees = Collections.singletonList(employee);
         when(employeeRepository.findAll()).thenReturn(employees);
 
@@ -43,7 +43,7 @@ class EmployeeServiceTest {
     @Test
     void should_return_employee_1_when_find_by_id_given_one_employee_with_id1() {
         //given
-        Employee employee = new Employee("Ang", 18, "male", 999999);
+        Employee employee = new Employee("Ang", 18, "male", 999999, 1);
         when(employeeRepository.findById(1)).thenReturn(employee);
 
         //when
@@ -56,7 +56,7 @@ class EmployeeServiceTest {
     @Test
     void should_return_1_employee_and_paging_data_when_find_paging_employees_given_one_employee_with_id1() {
         //given
-        Employee employee = new Employee("Ang", 18, "male", 999999);
+        Employee employee = new Employee("Ang", 18, "male", 999999, 1);
         List<Employee> employees = Collections.singletonList(employee);
         PageRequest pageRequest = PageRequest.of(0, 1);
         PageImpl<Employee> employeePage = new PageImpl<>(employees, pageRequest, 1);

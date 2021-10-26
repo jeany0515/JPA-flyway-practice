@@ -15,11 +15,9 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
-    private final EmployeeRepository employeeRepository;
     private final EmployeeService employeeService;
 
-    public EmployeeController(EmployeeRepository employeeRepository, EmployeeService employeeService) {
-        this.employeeRepository = employeeRepository;
+    public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
@@ -33,43 +31,30 @@ public class EmployeeController {
         return this.employeeService.findById(id);
     }
 
-    @GetMapping(params = {"page", "pageSize"})
+    @GetMapping(params = {"page", "size"})
     public PageImpl<Employee> findPagingEmployees(@PageableDefault Pageable pageable) {
         return this.employeeService.findPagingEmployees(pageable);
     }
 
     @GetMapping(params = "gender")
     public List<Employee> findEmployeesByGender(String gender) {
-        return this.employeeRepository.findEmployeesByGender(gender);
+        return this.employeeService.findEmployeesByGender(gender);
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.CREATED)
     public Employee createEmployee(@RequestBody Employee employee) {
-        return this.employeeRepository.createEmployee(employee);
+        return this.employeeService.createEmployee(employee);
     }
 
     @PutMapping("/{id}")
     public Employee editEmployee(@PathVariable Integer id, @RequestBody Employee updatedEmployee) {
-        Employee originEmployee = this.employeeRepository.findById(id);
-        if (Objects.nonNull(updatedEmployee.getAge())) {
-            originEmployee.setAge(updatedEmployee.getAge());
-        }
-        if (Objects.nonNull(updatedEmployee.getGender())) {
-            originEmployee.setGender(updatedEmployee.getGender());
-        }
-        if (Objects.nonNull(updatedEmployee.getName())) {
-            originEmployee.setName(updatedEmployee.getName());
-        }
-        if (Objects.nonNull(updatedEmployee.getSalary())) {
-            originEmployee.setSalary(updatedEmployee.getSalary());
-        }
-        return this.employeeRepository.updateEmployee(originEmployee);
+        return this.employeeService.editEmployee(id, updatedEmployee);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Integer id){
-        this.employeeRepository.delete(id);
+        this.employeeService.delete(id);
     }
 }

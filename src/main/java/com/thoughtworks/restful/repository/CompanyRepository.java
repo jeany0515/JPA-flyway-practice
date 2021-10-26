@@ -1,7 +1,6 @@
 package com.thoughtworks.restful.repository;
 
 import com.thoughtworks.restful.entity.Company;
-import com.thoughtworks.restful.entity.Employee;
 import com.thoughtworks.restful.exception.CompanyNotFoundException;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
