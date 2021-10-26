@@ -2,7 +2,6 @@ package com.thoughtworks.restful.controller;
 
 import com.thoughtworks.restful.entity.Company;
 import com.thoughtworks.restful.entity.Employee;
-import com.thoughtworks.restful.repository.CompanyRepository;
 import com.thoughtworks.restful.repository.EmployeeRepository;
 import com.thoughtworks.restful.service.CompanyService;
 import org.springframework.data.domain.PageImpl;
@@ -12,12 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/companies")
 public class CompanyController {
-    private final EmployeeRepository employeeRepository;
+    private EmployeeRepository employeeRepository;
     private final CompanyService companyService;
 
     public CompanyController(CompanyService companyService, EmployeeRepository employeeRepository) {
@@ -37,7 +35,7 @@ public class CompanyController {
 
     @GetMapping("/{id}/employees")
     public List<Employee> findEmployeesByCompanyId(@PathVariable Integer id) {
-        return this.employeeRepository.findByCompanyId(id);
+        return this.employeeRepository.findAllByCompanyId(id);
     }
 
     @GetMapping(params = {"page", "pageSize"})

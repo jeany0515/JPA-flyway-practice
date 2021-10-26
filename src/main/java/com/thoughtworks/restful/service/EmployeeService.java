@@ -3,7 +3,6 @@ package com.thoughtworks.restful.service;
 import com.thoughtworks.restful.entity.Employee;
 import com.thoughtworks.restful.exception.EmployeeNotFoundException;
 import com.thoughtworks.restful.repository.EmployeeRepository;
-import com.thoughtworks.restful.repository.NewEmployeeRepository;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -13,30 +12,30 @@ import java.util.Objects;
 
 @Service
 public class EmployeeService {
-    private final NewEmployeeRepository newEmployeeRepository;
+    private final EmployeeRepository employeeRepository;
 
-    public EmployeeService(NewEmployeeRepository newEmployeeRepository) {
-        this.newEmployeeRepository = newEmployeeRepository;
+    public EmployeeService(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
     }
 
     public List<Employee> findAll(){
-        return this.newEmployeeRepository.findAll();
+        return this.employeeRepository.findAll();
     }
 
     public Employee findById(Integer id) {
-        return this.newEmployeeRepository.findById(id).orElseThrow(EmployeeNotFoundException::new);
+        return this.employeeRepository.findById(id).orElseThrow(EmployeeNotFoundException::new);
     }
 
     public PageImpl<Employee> findPagingEmployees(Pageable pageable) {
-        return (PageImpl<Employee>) this.newEmployeeRepository.findAll(pageable);
+        return (PageImpl<Employee>) this.employeeRepository.findAll(pageable);
     }
 
     public List<Employee> findEmployeesByGender(String gender) {
-        return this.newEmployeeRepository.findAllByGender(gender);
+        return this.employeeRepository.findAllByGender(gender);
     }
 
     public Employee createEmployee(Employee employee) {
-        return this.newEmployeeRepository.save(employee);
+        return this.employeeRepository.save(employee);
     }
 
     public Employee editEmployee(Integer id, Employee updatedEmployee) {
@@ -56,11 +55,11 @@ public class EmployeeService {
         if (Objects.nonNull(updatedEmployee.getCompanyId())) {
             originEmployee.setCompanyId(updatedEmployee.getCompanyId());
         }
-        return this.newEmployeeRepository.save(originEmployee);
+        return this.employeeRepository.save(originEmployee);
     }
 
     public void delete(Integer id) {
         Employee employee = this.findById(id);
-        this.newEmployeeRepository.delete(employee);
+        this.employeeRepository.delete(employee);
     }
 }

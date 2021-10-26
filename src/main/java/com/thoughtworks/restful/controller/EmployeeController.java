@@ -1,7 +1,6 @@
 package com.thoughtworks.restful.controller;
 
 import com.thoughtworks.restful.entity.Employee;
-import com.thoughtworks.restful.repository.EmployeeRepository;
 import com.thoughtworks.restful.service.EmployeeService;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -10,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/employees")

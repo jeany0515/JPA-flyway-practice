@@ -8,6 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
@@ -44,7 +45,7 @@ class EmployeeServiceTest {
     void should_return_employee_1_when_find_by_id_given_one_employee_with_id1() {
         //given
         Employee employee = new Employee("Ang", 18, "male", 999999, 1);
-        when(employeeRepository.findById(1)).thenReturn(employee);
+        when(employeeRepository.findById(1)).thenReturn(java.util.Optional.of(employee));
 
         //when
         Employee actual = employeeService.findById(1);
@@ -60,7 +61,7 @@ class EmployeeServiceTest {
         List<Employee> employees = Collections.singletonList(employee);
         PageRequest pageRequest = PageRequest.of(0, 1);
         PageImpl<Employee> employeePage = new PageImpl<>(employees, pageRequest, 1);
-        when(employeeRepository.findPagingEmployees(any())).thenReturn(employeePage);
+        when(employeeRepository.findAll((Pageable) any())).thenReturn(employeePage);
 
         //when
         PageImpl<Employee> actual = employeeService.findPagingEmployees(pageRequest);
