@@ -1,0 +1,1 @@
+alter table employee add column gender varchar(255);
