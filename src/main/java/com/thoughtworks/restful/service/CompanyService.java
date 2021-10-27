@@ -1,6 +1,7 @@
 package com.thoughtworks.restful.service;
 
 import com.thoughtworks.restful.entity.Company;
+import com.thoughtworks.restful.exception.CompanyNotFoundException;
 import com.thoughtworks.restful.repository.CompanyRepository;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +12,7 @@ import java.util.Objects;
 
 @Service
 public class CompanyService {
-    private final CompanyRepository companyRepository;
+    private CompanyRepository companyRepository;
 
     public CompanyService(CompanyRepository companyRepository) {
         this.companyRepository = companyRepository;
@@ -22,27 +23,28 @@ public class CompanyService {
     }
 
     public Company findById(Integer id) {
-        return this.companyRepository.findById(id);
+        return this.companyRepository.findById(id).orElseThrow(CompanyNotFoundException::new);
     }
 
     public PageImpl<Company> findPagingCompanies(Pageable pageable) {
-        return this.companyRepository.findPagingCompanies(pageable);
+        return (PageImpl<Company>) this.companyRepository.findAll(pageable);
     }
 
     public Company createCompany(Company company) {
-        return this.companyRepository.createCompany(company);
+        return this.companyRepository.save(company);
     }
 
     public Company editCompany(Integer id, Company updatedCompany) {
-        Company originCompany = this.companyRepository.findById(id);
+        Company originCompany = this.findById(id);
 
         if (Objects.nonNull(updatedCompany.getName())) {
             originCompany.setName(updatedCompany.getName());
         }
-        return this.companyRepository.updateCompany(originCompany);
+        return this.companyRepository.save(originCompany);
     }
 
     public void delete(Integer id) {
-        this.companyRepository.delete(id);
+        Company company = this.findById(id);
+        this.companyRepository.delete(company);
     }
 }

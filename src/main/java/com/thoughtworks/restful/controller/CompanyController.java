@@ -38,7 +38,7 @@ public class CompanyController {
         return this.employeeRepository.findAllByCompanyId(id);
     }
 
-    @GetMapping(params = {"page", "pageSize"})
+    @GetMapping(params = {"page", "size"})
     public PageImpl<Company> findPagingCompanies(@PageableDefault Pageable pageable) {
         return this.companyService.findPagingCompanies(pageable);
     }
