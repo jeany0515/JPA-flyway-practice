@@ -1,0 +1,15 @@
+2021-10-27 11:15:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EMPLOYEE" not found; SQL statement:
+select employee0_.id as id1_0_, employee0_.age as age2_0_, employee0_.company_id as company_3_0_, employee0_.gender as gender4_0_, employee0_.name as name5_0_, employee0_.salary as salary6_0_ from employee employee0_ [42102-200]
+2021-10-27 11:15:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EMPLOYEE" not found; SQL statement:
+select employee0_.id as id1_0_, employee0_.age as age2_0_, employee0_.company_id as company_3_0_, employee0_.gender as gender4_0_, employee0_.name as name5_0_, employee0_.salary as salary6_0_ from employee employee0_ [42102-200]
+2021-10-27 11:15:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EMPLOYEE" not found; SQL statement:
+select employee0_.id as id1_0_, employee0_.age as age2_0_, employee0_.company_id as company_3_0_, employee0_.gender as gender4_0_, employee0_.name as name5_0_, employee0_.salary as salary6_0_ from employee employee0_ [42102-200]
+2021-10-27 11:15:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EMPLOYEE" not found; SQL statement:
+select employee0_.id as id1_0_, employee0_.age as age2_0_, employee0_.company_id as company_3_0_, employee0_.gender as gender4_0_, employee0_.name as name5_0_, employee0_.salary as salary6_0_ from employee employee0_ [42102-200]
+2021-10-27 11:15:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EMPLOYEE" not found; SQL statement:
+select employee0_.id as id1_0_, employee0_.age as age2_0_, employee0_.company_id as company_3_0_, employee0_.gender as gender4_0_, employee0_.name as name5_0_, employee0_.salary as salary6_0_ from employee employee0_ [42102-200]
